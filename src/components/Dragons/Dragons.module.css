@@ -1,0 +1,7 @@
+.dragons{
+    justify-content: flex-start;
+    overflow-y: scroll;
+    width: 100%;
+    gap: 16px;
+}
+

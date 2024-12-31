@@ -1,0 +1,61 @@
+.dragonItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 90%;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.dragonItem:hover {
+    background-color: #e8f5fe;
+}
+
+.dragonInfo {
+    flex: 1;
+}
+
+.dragonTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.dragonDetails {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0 0;
+}
+
+.dragonActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.playButton,
+.dragonButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.playButton:hover,
+.dragonButton:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.dragonDuration {
+    font-size: 14px;
+    color: #888;
+}

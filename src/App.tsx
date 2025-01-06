@@ -5,8 +5,24 @@ import RegisterInput from "./components/Registration/RegisterInput.tsx";
 import MainPage from "./views/main/MainPage.tsx";
 import MyAccount from "./components/MyAccount/MyAccount.tsx";
 import ProtectedRoute from "./components/ProtectedComponent/ProtectedComponent.tsx";
+import {useEffect} from "react";
+import {api} from "./api/requests.ts";
+import {useUserStore} from "./store/globalStore.ts";
 
 export default function App() {
+    const {user, setUser} = useUserStore()
+    const {authorized, setAuthorized} = useUserStore()
+
+    const getData = async () => {
+        await api.get("/user/me").then((res) => {setUser(res.data)});
+    }
+
+    if(!authorized && localStorage.getItem("token")) {
+        setAuthorized(true)
+        getData()
+    }
+
+
 
     return (
         <BrowserRouter>
@@ -19,7 +35,7 @@ export default function App() {
                         <MainPage/>
                     </ProtectedRoute>}/>
                 <Route path="/user" element={
-                    <ProtectedRoute  redirectTo={"/login"}>
+                    <ProtectedRoute redirectTo={"/login"}>
                         <MyAccount/>
                     </ProtectedRoute>
                 }/>

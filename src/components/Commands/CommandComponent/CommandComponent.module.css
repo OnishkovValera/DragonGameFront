@@ -1,4 +1,4 @@
-.dragonItem {
+.commandItem {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -13,33 +13,33 @@
 
 }
 
-.dragonItem:hover {
+.commandItem:hover {
     background-color: #e8f5fe;
 }
 
-.dragonInfo {
+.commandInfo {
     flex: 1;
 }
 
-.dragonTitle {
+.commandTitle {
     font-size: 18px;
     font-weight: bold;
     margin: 0;
 }
 
-.dragonDetails {
+.commandDetails {
     font-size: 14px;
     color: #555;
     margin: 5px 0 0;
 }
 
-.dragonActions {
+.commandActions {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.dragonButton {
+.commandButton {
     background-color: #007bff;
     color: white;
     border: none;
@@ -50,12 +50,12 @@
     transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.dragonButton:hover {
+.commandButton:hover {
     background-color: #0056b3;
     transform: scale(1.1);
 }
 
-.dragonDuration {
+.commandDuration {
     font-size: 14px;
     color: #888;
 }

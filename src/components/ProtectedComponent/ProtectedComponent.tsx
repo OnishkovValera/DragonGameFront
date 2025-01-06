@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {useUserStore} from "../../store/globalStore.ts";
 
 interface ProtectedRouteProps {
@@ -9,14 +9,16 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
                                                            redirectTo,
-                                                           children,
+                                                           children
                                                        }) => {
-    const currentUser = useUserStore((state) => state.user);
-    console.log(currentUser);
-    if (!currentUser) {
-        return <Navigate to={redirectTo} />;
+
+
+    const {authorized, setAuthorized} = useUserStore();
+
+    if (authorized) {
+        return <>{children}</>;
     }
-    return <>{children}</>;
-};
+    return <Navigate to={redirectTo}/>;
+}
 
 export default ProtectedRoute;

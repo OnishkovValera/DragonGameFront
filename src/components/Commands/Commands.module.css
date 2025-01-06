@@ -1,0 +1,61 @@
+.commands{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 3px;
+
+
+}
+
+.commandItem {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 90%;
+
+}
+
+.commandInfo {
+    flex: 1;
+}
+
+.commandTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.commandDetails {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0 0;
+}
+
+.commandActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.commandButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    visibility: hidden;
+}
+
+
+.commandDuration {
+    font-size: 14px;
+    color: #888;
+}

@@ -1,0 +1,45 @@
+.footer{
+
+    display: flex;
+    width: 100%;
+    align-items: end;
+    justify-content: center;
+    flex: 1 1 0%;
+}
+
+.Button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+
+.Button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.Button {
+    font-size: 14px;
+}
+
+.currentNumber{
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+
+
+
+
+}

@@ -1,15 +1,17 @@
 .div {
+    height: 100vh;
     align-content: center;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
 }
 .container{
     align-content: center;
+    align-items: center;
     width: auto;
     justify-content: center;
-    align-items: center;
     display: flex;
     gap: 10px;
     flex-direction: column;
@@ -20,10 +22,9 @@
     display: inline-block;
     box-sizing: border-box;
     padding: 0 20px;
-    margin: 0 15px 15px 0;
     border-radius: 4px;
     height: auto;
-    width: auto;
+    width: 100%;
     line-height: 32px;
     font-size: 14px;
     font-weight: 500;

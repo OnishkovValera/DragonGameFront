@@ -6,7 +6,7 @@ import styles from "./LoginInput.module.css"
 
 export default function LoginInput() {
     const {setUser} = useUserStore();
-    const [message] = useState("");
+    const [message, setMessage] = useState("");
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
@@ -27,7 +27,7 @@ export default function LoginInput() {
             setError(false);
         } catch (err) {
             console.log(err)
-            //setMessage(err.response.data.description)
+            setMessage(err.response.data.description)
 
             setError(true)
         }
@@ -35,7 +35,6 @@ export default function LoginInput() {
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault()
-        console.log("prevent_default")
         checkLogin();
 
     }
@@ -50,9 +49,8 @@ export default function LoginInput() {
                        onChange={(e) => setPassword(e.target.value)}/>
                 <button type={"submit"} className={styles.btn}>Войти</button>
             </form>
-            <h1></h1>
             {error && (
-                <div className={styles.div} style={{color: 'red', marginBottom: '10px'}}>
+                <div className={styles.div} style={{color: 'red', marginBottom: '10px', height: "auto"}}>
                     {message}
                 </div>
             )}

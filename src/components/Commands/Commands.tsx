@@ -1,9 +1,30 @@
 import styles from "./Commands.module.css"
 import {Command} from "../../api/types/Command.ts";
 import CommandComponent from "./CommandComponent/CommandComponent.tsx";
+import {useEffect, useState} from "react";
+import {Person} from "../../api/types/Person.ts";
+import {api} from "../../api/requests.ts";
 
 
-export default function Commands() {
+export default function Commands({currentNumber}:{currentNumber:number}){
+
+
+    const [persons, setPersons] = useState<Person[]>([]);
+
+    const getPersons = (currentPage: number) => {
+        api.get("/command", {
+            params: {
+                page: currentPage,
+                size: 5
+            }
+        }).then((res) => {
+            setPersons(res.data);
+        })
+    }
+    useEffect(() => {
+        getPersons(currentNumber);
+    }, [currentNumber]);
+
 
     const command: Command = {
         name: "ВСРФ",
@@ -14,10 +35,7 @@ export default function Commands() {
             id: 123345
         },
         id: 228,
-        cave: {
-            depth: 200,
-            numberOfTreasueres: 400
-        },
+        cave: null,
         persons: [
             {
                 id: 123,
@@ -33,7 +51,7 @@ export default function Commands() {
                 hairColor: "BLACK",
             },
             {
-                id: 123,
+                id: 100,
                 weight: 200,
                 name: "picador",
                 nationality: "Russian",
@@ -46,7 +64,7 @@ export default function Commands() {
                 hairColor: "BLACK",
             },
             {
-                id: 123,
+                id: 200,
                 weight: 200,
                 name: "picador",
                 nationality: "Russian",
@@ -67,9 +85,12 @@ export default function Commands() {
             <div className={styles.commandItem}>
                 <h3 className={styles.commandTitle}>Название</h3>
                 <p className={styles.commandDetails}>
-                    Вес
+                    Подземелье
                 </p>
                 <span className={styles.commandDuration}>Владелец</span>
+                <div className={styles.commandDetails}>
+                    Участники
+                </div>
                 <button className={styles.commandButton}>
                     Изменить
                 </button>

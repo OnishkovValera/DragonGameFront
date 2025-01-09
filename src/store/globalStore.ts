@@ -1,8 +1,8 @@
 import {User} from "../api/types/User.ts"
 import {create} from 'zustand'
-import {Dragon} from "../api/types/Dragon.ts";
+import {Dragon, voidDragon} from "../api/types/Dragon.ts";
 import {Person, voidPerson} from "../api/types/Person.ts";
-import {Command} from "../api/types/Command.ts";
+import {Command, voidCommand} from "../api/types/Command.ts";
 
 interface UserStore {
     authorized: boolean
@@ -13,71 +13,64 @@ interface UserStore {
 
 interface ModalData {
     isActive: boolean
-    setIsActive: (isModalActive: boolean) => void
-}
-
-interface DragonModalStore{
-    currentHandlingDragon:Dragon | null,
-    setCurrentHandlingDragon:(dragon:Dragon| null) => void
+    setIsActive: (isModalActive: boolean) => void,
     isCreating: boolean,
-    setIsCreating: (isCreating: boolean) => void
+    setIsCreating: (isCreating: boolean) => void,
+}
+
+interface DragonModalStore {
+    currentHandlingDragon: Dragon,
+    setCurrentHandlingDragon: (dragon: Dragon) => void
+
 
 }
 
-interface PersonModalStore{
-    currentHandlingPerson:Person,
-    setCurrentHandlingPerson:(person:Person) => void,
-    isCreating: boolean,
-    setIsCreating: (isCreating: boolean) => void
+interface PersonModalStore {
+    currentHandlingPerson: Person,
+    setCurrentHandlingPerson: (person: Person) => void,
+
 
 }
 
-interface CommandModalStore{
-    currentHandlingCommand:Command | null,
-    setCurrentHandlingCommand:(dragon:Command| null) => void,
-    isCreating: boolean,
-    setIsCreating: (isCreating: boolean) => void
-}
+interface CommandModalStore {
+    currentHandlingCommand: Command,
+    setCurrentHandlingCommand: (dragon: Command) => void,
 
+}
 
 
 export const useUserStore = create<UserStore>((set) => ({
         authorized: false,
         user: null,
-        setAuthorized: (authorized:boolean) => set({authorized}),
+        setAuthorized: (authorized: boolean) => set({authorized}),
         setUser: (user: User | null) => set({user})
     })
 )
 
 export const useModalActive = create<ModalData>((set) => ({
         isActive: false,
-        setIsActive: (isActive:boolean) => set({isActive})
+        setIsActive: (isActive: boolean) => set({isActive}),
+        isCreating: false,
+        setIsCreating: (isCreating: boolean) => set({isCreating}),
     })
 )
 
 export const useDragonModalStore = create<DragonModalStore>((set) => ({
-    currentHandlingDragon:null,
-    setCurrentHandlingDragon: (currentHandlingDragon:Dragon | null) => set({currentHandlingDragon}),
-    isCreating: false,
-    setIsCreating: (isCreating: boolean) => set({isCreating: isCreating}),
-
+    currentHandlingDragon: voidDragon,
+    setCurrentHandlingDragon: (currentHandlingDragon: Dragon) => set({currentHandlingDragon}),
 }))
 
 
 export const usePersonModalStore = create<PersonModalStore>((set) => ({
     currentHandlingPerson: voidPerson,
-    setCurrentHandlingPerson: (currentHandlingPerson:Person) => set({currentHandlingPerson}),
-    isCreating: false,
-    setIsCreating: (isCreating: boolean) => set({isCreating: isCreating}),
+    setCurrentHandlingPerson: (currentHandlingPerson: Person) => set({currentHandlingPerson}),
 
 }))
 
 
 export const useCommandModalStore = create<CommandModalStore>((set) => ({
-    currentHandlingCommand:null,
-    setCurrentHandlingCommand: (currentHandlingCommand:Command | null) => set({currentHandlingCommand}),
-    isCreating: true,
-    setIsCreating: (isCreating: boolean) => set({isCreating: isCreating}),
+    currentHandlingCommand: voidCommand,
+    setCurrentHandlingCommand: (currentHandlingCommand: Command) => set({currentHandlingCommand}),
 }))
 
 

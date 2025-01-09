@@ -1,7 +1,7 @@
 import {Location} from "./Location.ts";
 
 export type Person = {
-    id: number;
+    id: number | null;
     name: string;
     eyeColor: string;
     hairColor: string;
@@ -12,7 +12,7 @@ export type Person = {
 
 
 export const voidPerson:Person = {
-    id: 0,
+    id: null,
     name: "",
     eyeColor: "BLACK",
     hairColor: "BLACK",
@@ -22,5 +22,5 @@ export const voidPerson:Person = {
         z:0
     },
     weight: 0,
-    nationality: ""
+    nationality: "FRANCE"
 }

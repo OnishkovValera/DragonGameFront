@@ -1,17 +1,16 @@
-import {FormEvent, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import {useUserStore} from "../../store/globalStore.ts";
 import {api} from "../../api/requests.ts"
 import {useNavigate} from "react-router-dom";
 import styles from "./LoginInput.module.css"
 
 export default function LoginInput() {
-    const {setUser} = useUserStore();
+    const {setUser, authorized} = useUserStore();
     const [message, setMessage] = useState("");
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const navigate = useNavigate();
-    //const currentUser = useUserStore((state) => state.user);
 
     const checkLogin = async () => {
         try {
@@ -28,10 +27,15 @@ export default function LoginInput() {
         } catch (err) {
             console.log(err)
             setMessage(err.response.data.description)
-
             setError(true)
         }
     }
+
+    useEffect(() => {
+        if(authorized){
+            navigate("/main")
+        }
+        }, [authorized]);
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault()

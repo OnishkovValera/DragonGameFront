@@ -9,6 +9,9 @@ import {useCommandModalStore} from "../../store/globalStore.ts";
 import PersonModal from "../../modal/PersonModal/PersonModal.tsx";
 import CommandModal from "../../modal/CommandModal/CommandModal.tsx";
 import {ReactElement} from "react";
+import {voidDragon} from "../../api/types/Dragon.ts";
+import {voidPerson} from "../../api/types/Person.ts";
+import {voidCommand} from "../../api/types/Command.ts";
 
 export default function HeaderComponent({setSelected, selected}: {
     setSelected: (selectedType: number) => void,
@@ -16,9 +19,9 @@ export default function HeaderComponent({setSelected, selected}: {
 }) {
 
     const navigate = useNavigate();
-    const {setIsActive} = useModalActive()
+    const {setIsActive, setIsCreating} = useModalActive()
     const {setCurrentHandlingDragon} = useDragonModalStore();
-    const {setCurrentHandlingPerson, setIsCreating} = usePersonModalStore();
+    const {setCurrentHandlingPerson} = usePersonModalStore();
     const {setCurrentHandlingCommand} = useCommandModalStore();
 
     const map = new Map<number, ReactElement>
@@ -33,9 +36,9 @@ export default function HeaderComponent({setSelected, selected}: {
             <div className={`${styles.container} ${styles.addButton}`}>
                 <button className={styles.Button} onClick={() => {
                     setIsCreating(true);
-                    setCurrentHandlingDragon(null)
-                    setCurrentHandlingPerson(null)
-                    setCurrentHandlingCommand(null)
+                    setCurrentHandlingDragon(structuredClone(voidDragon))
+                    setCurrentHandlingPerson(structuredClone(voidPerson))
+                    setCurrentHandlingCommand(structuredClone(voidCommand))
                     setIsActive(true)
                 }}>
                     + Создать

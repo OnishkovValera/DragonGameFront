@@ -7,11 +7,32 @@ export type Dragon = {
     id: number;
     name: string;
     coordinates: Coordinates;
-    creationDateTime: Date;
+    creationDateTime: string | null;
     dragonCave:DragonCave | null;
+    speaking: boolean | null;
     killer: Person | null;
     age: number;
     description: string | null;
     dragonCharacter: string;
     dragonHead: DragonHead;
+}
+
+export const voidDragon: Dragon = {
+    id: 0,
+    name: "",
+    dragonCharacter: "CUNNING",
+    speaking: false,
+    dragonHead: {
+        id: 0,
+        toothCount: 0
+    },
+    age: 0,
+    dragonCave: null,
+    creationDateTime: null,
+    coordinates: {
+        y: 0,
+        x: 0
+    },
+    description: "",
+    killer: null
 }

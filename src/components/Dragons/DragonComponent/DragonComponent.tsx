@@ -5,14 +5,13 @@ import {useDragonModalStore} from "../../../store/globalStore.ts";
 
 export default function DragonComponent({dragon}: { dragon: Dragon }) {
 
-    const {currentHandlingDragon, setCurrentHandlingDragon} = useDragonModalStore();
-    const {isActive, setIsActive} = useModalActive();
-
+    const {setCurrentHandlingDragon} = useDragonModalStore();
+    const {setIsActive, setIsCreating} = useModalActive();
 
 
     function onClickDragon() {
+        setIsCreating(false);
         setCurrentHandlingDragon(dragon);
-        console.log(dragon, currentHandlingDragon);
         setIsActive(true);
     }
 
@@ -20,9 +19,18 @@ export default function DragonComponent({dragon}: { dragon: Dragon }) {
         <div className={styles.dragonItem}>
             <h3 className={styles.dragonTitle}>{dragon.name}</h3>
             <p className={styles.dragonDetails}>
-                {dragon.age} &bull; {dragon.dragonCharacter}
+                {dragon.coordinates.x} &bull; {dragon.coordinates.y}
             </p>
-            <span className={styles.dragonDuration}>{dragon.creationDateTime.toLocaleDateString()}</span>
+            <p className={styles.dragonDetails}>{dragon.killer ? dragon.killer.name : "Жив"}</p>
+            <p className={styles.dragonDetails}>{dragon.age}</p>
+            <p className={styles.dragonDetails}>{dragon.description ?
+                (dragon.description?.length > 10 ?
+                    dragon.description?.substring(0, 10)
+                    : dragon.description)
+                : "Без описания"}</p>
+            <p className={styles.dragonDetails}>{dragon.dragonCharacter}</p>
+            <p className={styles.dragonDetails}>{dragon.dragonHead.toothCount}</p>
+            <span className={styles.dragonDuration}>{dragon.creationDateTime?.substring(0, 10)}</span>
             <button className={styles.dragonButton} onClick={onClickDragon}>
                 Изменить
             </button>

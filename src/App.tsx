@@ -5,22 +5,29 @@ import RegisterInput from "./components/Registration/RegisterInput.tsx";
 import MainPage from "./views/main/MainPage.tsx";
 import MyAccount from "./components/MyAccount/MyAccount.tsx";
 import ProtectedRoute from "./components/ProtectedComponent/ProtectedComponent.tsx";
-import {useEffect} from "react";
 import {api} from "./api/requests.ts";
 import {useUserStore} from "./store/globalStore.ts";
+import {useEffect} from "react";
 
 export default function App() {
-    const {user, setUser} = useUserStore()
+    const {setUser} = useUserStore()
     const {authorized, setAuthorized} = useUserStore()
 
-    const getData = async () => {
-        await api.get("/user/me").then((res) => {setUser(res.data)});
-    }
+    useEffect(() => {
+        const getData = async () => {
+            await api.get("/user/me").then((res) => {
+                setUser(res.data)
+                setAuthorized(true)
+                console.log(res.data)
+                console.log(authorized)
+            }).catch(console.error);
+        }
 
-    if(!authorized && localStorage.getItem("token")) {
-        setAuthorized(true)
-        getData()
-    }
+        if (!authorized && localStorage.getItem("token")) {
+            getData()
+        }
+    }, []);
+
 
 
 

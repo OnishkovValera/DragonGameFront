@@ -13,11 +13,12 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
                                                        }) => {
 
 
-    const {authorized, setAuthorized} = useUserStore();
+    const {authorized} = useUserStore();
 
     if (authorized) {
         return <>{children}</>;
     }
+
     return <Navigate to={redirectTo}/>;
 }
 

@@ -9,3 +9,17 @@ export type Command = {
     cave: DragonCave | null
     persons: Person[]
 }
+
+
+export const voidCommand: Command = {
+    name: "",
+    owner: {
+        name: "",
+        login: "",
+        role: "",
+        id: 0
+    },
+    id: 0,
+    cave: null,
+    persons: []
+}

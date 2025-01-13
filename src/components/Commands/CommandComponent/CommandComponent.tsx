@@ -16,18 +16,16 @@ export default function CommandComponent({command}:{command: Command}) {
     }
 
     return (
-        <div className={styles.commandItem}>
-            <h3 className={styles.commandTitle}>{command.name}</h3>
-            <p className={styles.commandDetails}>
-                {command.cave?.depth ? command.cave.depth : "Не в подземелье"}
-            </p>
-            <span className={styles.commandDuration}>{command.owner.name}</span>
-            <div className={styles.commandDiv}>
-                {command.persons.length} {command.persons.length < 4 ? "участника" : "участников" }
-            </div>
-            <button className={styles.commandButton} onClick={onClickCommand}>
-                Изменить
-            </button>
-        </div>
+        <tr className={styles.commandItem}>
+            <th className={styles.firstChild}>{command.name}</th>
+            <th>{command.cave?.depth ? command.cave?.depth : "Не в подземелье"}</th>
+            <th>{command.owner.name}</th>
+            <th>{command.members.length}</th>
+            <th className={styles.lastChild}>
+                <button className={styles.commandButton} onClick={onClickCommand}>
+                    Изменить
+                </button>
+            </th>
+        </tr>
     )
 }

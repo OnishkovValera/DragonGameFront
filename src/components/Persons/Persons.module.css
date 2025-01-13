@@ -1,58 +1,39 @@
-.persons{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 3px;
-
-}
-
-
-.personItem{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 10px;
-    width: 90%;
-}
-
-
-.personInfo {
-    flex: 1;
-}
-
-.personTitle {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.personDetails {
-    font-size: 14px;
-    color: #555;
-    margin: 5px 0 0;
-}
-
-.personActions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.personButton {;
+.personButton {
+    background-color: #007bff;
+    color: white;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.personDuration {
-    font-size: 14px;
-    color: #888;
+.personButton:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
 }
 
+.table{
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    border-radius: 10px 10px 10px 10px;
+    width: 90%;
+    justify-content: center;
+}
+
+.tableContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.headerRow{
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 10px;
+}

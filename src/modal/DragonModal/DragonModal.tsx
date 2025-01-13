@@ -1,6 +1,6 @@
 import styles from "./DragonModal.module.css"
 import {useDragonModalStore, useModalActive} from "../../store/globalStore.ts";
-import React, {FormEvent, useEffect, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import {Dragon, voidDragon} from "../../api/types/Dragon.ts";
 import {api} from "../../api/requests.ts";
 
@@ -10,7 +10,6 @@ export default function DragonModal() {
     const [newDragon, setNewDragon] = useState<Dragon>(structuredClone(voidDragon));
 
     useEffect(() => {
-        console.log(isCreating)
         if (isCreating) {
             setNewDragon(structuredClone(voidDragon));
         } else {
@@ -20,18 +19,36 @@ export default function DragonModal() {
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault()
-        console.log(newDragon)
         api.post("dragon", newDragon).then((response) => {
             setCurrentHandlingDragon(response.data)
-            console.log(response)
             setIsActive(false);
 
         })
     }
 
+    function handleUpdate(event: FormEvent) {
+        event.preventDefault()
+        api.put("dragon", newDragon).then((response) => {
+            setCurrentHandlingDragon(response.data)
+            setIsActive(false);
+
+        })
+    }
+
+    function deleteDragon() {
+        api.delete("dragon", {
+            params:{
+                id: currentHandlingDragon.id
+            }
+        }).then((response) => {
+            setIsActive(false);
+        }).catch((error) => {console.log(error)})
+
+    }
+
     return (
         <div className={styles.mainDiv}>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={styles.form} onSubmit={isCreating ? handleSubmit : handleUpdate}>
 
                 <div>
                     <label>Имя:</label>
@@ -69,7 +86,7 @@ export default function DragonModal() {
                 <div>
                     <label>Координаты(XY):</label>
                     <div className={styles.locationContainer}>
-                        <input className={styles.input} name="x" type="number"
+                        <input className={styles.input} name="x" max={98} type="number"
                                value={newDragon?.coordinates?.x}
                                onChange={(event) => {
                                    setNewDragon({
@@ -78,7 +95,7 @@ export default function DragonModal() {
                                    })
 
                                }}/>
-                        <input className={styles.input} name="y" type="number"
+                        <input className={styles.input} name="y" min={-462} type="number"
                                value={newDragon?.coordinates?.y}
                                onChange={(event) => {
                                    setNewDragon({
@@ -173,7 +190,7 @@ export default function DragonModal() {
                 )
                 }
                 <button type={"submit"} className={styles.Button}>Сохранить</button>
-                {!isCreating && <button type={"button"} className={styles.Button} style={{backgroundColor:"red" }}>Удалить</button>}
+                {!isCreating && <button type={"button"} className={styles.Button} style={{backgroundColor:"red" }} onClick={deleteDragon}>Удалить</button>}
 
             </form>
         </div>

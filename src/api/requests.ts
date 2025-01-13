@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {useUserStore} from "../store/globalStore.ts";
+
 const setAuthorized = useUserStore.getState().setAuthorized
 
 export const api = axios.create({
@@ -10,10 +11,10 @@ export const api = axios.create({
 
 api.interceptors.request.use((config) => {
     const token: string | null = localStorage.getItem("token")
-    if(token) {
+    if (token) {
         config.headers["Authorization"] = `Bearer ${token}`
         setAuthorized(true)
-    }else{
+    } else {
         setAuthorized(false)
     }
 
@@ -21,11 +22,14 @@ api.interceptors.request.use((config) => {
 })
 
 api.interceptors.response.use((response) => {
-    if(response.status == 401){
+    return response
+}, (error) => {
+    if (error.status == 401) {
         setAuthorized(false)
         localStorage.removeItem("token")
     }
-
-    return response
+    return error
 })
+
+
 

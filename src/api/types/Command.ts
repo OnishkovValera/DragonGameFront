@@ -7,7 +7,7 @@ export type Command = {
     name: string;
     owner: User
     cave: DragonCave | null
-    persons: Person[]
+    members: Person[]
 }
 
 
@@ -21,5 +21,5 @@ export const voidCommand: Command = {
     },
     id: 0,
     cave: null,
-    persons: []
+    members: []
 }

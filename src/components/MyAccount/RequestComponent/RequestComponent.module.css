@@ -1,21 +1,4 @@
-.dragonItem {
-    margin: 5px;
-    height: 50px;
-    overflow: hidden;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 10px;
-    background-color: #cccccc;
-    transition: background-color 0.3s ease;
-
-}
-
-.dragonItem:hover {
-    background-color: #e8f5fe;
-}
-
-
-.dragonButton {
+.Button {
     background-color: #007bff;
     color: white;
     border: none;
@@ -26,11 +9,25 @@
     transition: background-color 0.3s ease, transform 0.2s;
 }
 
-.dragonButton:hover {
+.Button:hover {
     background-color: #0056b3;
     transform: scale(1.1);
 }
 
+.requestItem {
+    margin: 5px;
+    height: 50px;
+    overflow: hidden;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #cccccc;
+    transition: background-color 0.3s ease;
+}
+
+.requestItem:hover {
+    background-color: #e8f5fe;
+}
 
 .firstChild{
     border-top-left-radius: 10px;

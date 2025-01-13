@@ -5,7 +5,7 @@ export type Person = {
     name: string;
     eyeColor: string;
     hairColor: string;
-    location: Location;
+    location: Location | null;
     weight: number;
     nationality: string;
 }

@@ -15,23 +15,17 @@ export default function PersonComponent({person}: { person: Person }) {
 
 
     return (
-        <div className={styles.personItem}>
-            <h3 className={styles.personTitle}>{person.name}</h3>
-            <p className={styles.personDetails}>
-                {person.location.x}&bull;{person.location.y}&bull;{person.location.z}
-            </p>
-            <p className={styles.personDetails}>
-                {person.hairColor}&bull;{person.eyeColor}
-            </p>
-            <p className={styles.personDetails}>
-                {person.weight}
-            </p>
-            <p className={styles.personDetails}>
-                {person.nationality}
-            </p>
-            <button className={styles.personButton} onClick={onClickPerson}>
-                Изменить
-            </button>
-        </div>
+        <tr className={styles.personItem}>
+            <th className={styles.firstChild}>{person.name}</th>
+            <th>{person.location ? <>{person.location.x} &bull;{person.location.y}&bull;{person.location.z}</> : null}</th>
+            <th> {person.hairColor}&bull;{person.eyeColor}</th>
+            <th>{person.weight}</th>
+            <th>{person.nationality}</th>
+            <th className={styles.lastChild}>
+                <button className={styles.personButton} onClick={onClickPerson}>
+                    Изменить
+                </button>
+            </th>
+        </tr>
     )
 }

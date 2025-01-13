@@ -16,24 +16,24 @@ export default function DragonComponent({dragon}: { dragon: Dragon }) {
     }
 
     return (
-        <div className={styles.dragonItem}>
-            <h3 className={styles.dragonTitle}>{dragon.name}</h3>
-            <p className={styles.dragonDetails}>
-                {dragon.coordinates.x} &bull; {dragon.coordinates.y}
-            </p>
-            <p className={styles.dragonDetails}>{dragon.killer ? dragon.killer.name : "Жив"}</p>
-            <p className={styles.dragonDetails}>{dragon.age}</p>
-            <p className={styles.dragonDetails}>{dragon.description ?
+        <tr className={styles.dragonItem}>
+            <th className={styles.firstChild}>{dragon.name}</th>
+            <th>{dragon.coordinates.x} &bull; {dragon.coordinates.y}</th>
+            <th>{dragon.killer ? dragon.killer.name : "Жив"}</th>
+            <th>{dragon.age}</th>
+            <th>{dragon.description ?
                 (dragon.description?.length > 10 ?
                     dragon.description?.substring(0, 10)
                     : dragon.description)
-                : "Без описания"}</p>
-            <p className={styles.dragonDetails}>{dragon.dragonCharacter}</p>
-            <p className={styles.dragonDetails}>{dragon.dragonHead.toothCount}</p>
-            <span className={styles.dragonDuration}>{dragon.creationDateTime?.substring(0, 10)}</span>
-            <button className={styles.dragonButton} onClick={onClickDragon}>
-                Изменить
-            </button>
-        </div>
+                : "Без описания"}</th>
+            <th>{dragon.dragonCharacter}</th>
+            <th>{dragon.dragonHead.toothCount}</th>
+            <th>{dragon.creationDateTime?.substring(0, 10)}</th>
+            <th className={styles.lastChild}>
+                <button className={styles.dragonButton} onClick={onClickDragon}>
+                    Изменить
+                </button>
+            </th>
+        </tr>
     )
 }

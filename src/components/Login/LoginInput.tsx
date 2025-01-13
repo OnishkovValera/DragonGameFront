@@ -25,7 +25,6 @@ export default function LoginInput() {
             navigate("/main")
             setError(false);
         } catch (err) {
-            console.log(err)
             setMessage(err.response.data.description)
             setError(true)
         }

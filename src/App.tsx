@@ -18,8 +18,6 @@ export default function App() {
             await api.get("/user/me").then((res) => {
                 setUser(res.data)
                 setAuthorized(true)
-                console.log(res.data)
-                console.log(authorized)
             }).catch(console.error);
         }
 

@@ -1,13 +1,10 @@
 .commandItem {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    margin: 5px;
+    height: 50px;
+    overflow: hidden;
     align-items: center;
     padding: 10px 20px;
     border-radius: 10px;
-    width: 90%;
-    border-bottom: 1px solid #e0e0e0;
     background-color: #cccccc;
     transition: background-color 0.3s ease;
 
@@ -17,27 +14,6 @@
     background-color: #e8f5fe;
 }
 
-.commandInfo {
-    flex: 1;
-}
-
-.commandTitle {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.commandDetails {
-    font-size: 14px;
-    color: #555;
-    margin: 5px 0 0;
-}
-
-.commandActions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
 .commandButton {
     background-color: #007bff;
@@ -55,15 +31,14 @@
     transform: scale(1.1);
 }
 
-.commandDuration {
-    font-size: 14px;
-    color: #888;
+
+.firstChild{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
-.commandDiv{
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-
+.lastChild{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 

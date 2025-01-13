@@ -12,8 +12,7 @@ export default function PersonModal() {
     const [newPerson, setNewPerson] = useState<Person>(structuredClone(voidPerson));
 
     useEffect(() => {
-        if (isCreating){
-            console.log(isCreating);
+        if (isCreating) {
             setNewPerson(structuredClone(voidPerson));
         } else {
             setNewPerson(structuredClone(currentHandlingPerson));
@@ -22,17 +21,35 @@ export default function PersonModal() {
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault()
+        api.post("/person", newPerson)
+            .then((response) => {
+                setIsActive(false)
+            })
+    }
+
+
+    function deletePerson() {
+        api.delete("/person/" + currentHandlingPerson.id)
+            .then((result) => {
+                    setIsActive(false)
+                }
+            )
+    }
+
+    function handleChangePerson(event: FormEvent) {
+        event.preventDefault()
         console.log(newPerson)
-        api.post("/person", newPerson).then((result) => {
-            console.log(result)
-        })
-        setIsActive(false);
+        api.put("/person", newPerson)
+            .then((result) => {
+                setIsActive(false);
+
+            })
 
     }
 
     return (
         <div className={styles.mainDiv}>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={styles.form} onSubmit={isCreating ? handleSubmit : handleChangePerson}>
 
                 <div>
                     <label>Имя:</label>
@@ -120,7 +137,8 @@ export default function PersonModal() {
                     </select>
                 </div>
                 <button type={"submit"} className={styles.Button}>Сохранить</button>
-                {!isCreating && <button type={"button"} className={styles.Button} style={{backgroundColor:"red" }}>Удалить</button>}
+                {!isCreating && <button type={"button"} className={styles.Button} style={{backgroundColor: "red"}}
+                                        onClick={deletePerson}>Удалить</button>}
 
             </form>
         </div>

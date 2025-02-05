@@ -39,3 +39,33 @@
     overflow: hidden;
     border-radius: 10px;
 }
+.headerRow th{
+    border: none;
+    border-radius: 10px;
+}
+.headerRow th:hover {
+    background-color: #cccccc;
+    transition: background-color 0.3s ease, transform 0.2s;
+
+}
+
+.headerRow th:last-child {
+    all: unset;
+}
+.d2 {
+    display: flex;
+}
+
+.d2 button {
+    min-width: 75px;
+    margin-left: 5px;
+}
+
+.d2 input {
+    border: solid #555555;
+    border-radius: 3px;
+    width: 100%;
+    height: 42px;
+    padding-left: 15px;
+}
+

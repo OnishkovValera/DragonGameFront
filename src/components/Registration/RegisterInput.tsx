@@ -20,6 +20,7 @@ export default function RegisterInput(){
                 password: password,
                 login: login
             })
+            console.log(response)
             setUser(response.data)
             try{
                 const loginResponse = await api.post("/login", {
@@ -59,7 +60,7 @@ export default function RegisterInput(){
             <form className={styles.form} onSubmit={handleSubmit}>
                 <input className={styles.input} type={"email"} value={login} required placeholder={"Введите почту"}
                        onChange={(e) => setLogin(e.target.value)}/>
-                <input className={styles.input} type={"text"} value={name} required minLength={4} placeholder={"Введите ник"}
+                <input className={styles.input} type={"text"} value={name} required minLength={6} placeholder={"Введите ник"}
                        onChange={(e) => setName(e.target.value)}/>
                 <input className={styles.input} type={"password"} required minLength={6} value={password} placeholder={"Введите пароль"}
                        onChange={(e) => setPassword(e.target.value)}/>

@@ -15,6 +15,7 @@ export type Dragon = {
     description: string | null;
     dragonCharacter: string;
     dragonHead: DragonHead;
+    owner: Person | null;
 }
 
 export const voidDragon: Dragon = {

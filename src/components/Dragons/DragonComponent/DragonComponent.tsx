@@ -1,18 +1,21 @@
 import styles from "./DragonComponent.module.css"
 import {Dragon} from "../../../api/types/Dragon.ts";
-import {useModalActive} from "../../../store/globalStore.ts";
+import {useModalActive, useUserStore} from "../../../store/globalStore.ts";
 import {useDragonModalStore} from "../../../store/globalStore.ts";
 
 export default function DragonComponent({dragon}: { dragon: Dragon }) {
 
     const {setCurrentHandlingDragon} = useDragonModalStore();
     const {setIsActive, setIsCreating} = useModalActive();
-
+    const {user} = useUserStore();
 
     function onClickDragon() {
         setIsCreating(false);
         setCurrentHandlingDragon(dragon);
         setIsActive(true);
+    }
+    function checkUser(){
+        return user?.name == dragon?.owner?.name || user?.role == "ADMIN"
     }
 
     return (
@@ -30,9 +33,14 @@ export default function DragonComponent({dragon}: { dragon: Dragon }) {
             <th>{dragon.dragonHead.toothCount}</th>
             <th>{dragon.creationDateTime?.substring(0, 10)}</th>
             <th className={styles.lastChild}>
-                <button className={styles.dragonButton} onClick={onClickDragon}>
-                    Изменить
-                </button>
+                {checkUser() ? (
+                    <button className={styles.dragonButton} onClick={onClickDragon}>
+                        Изменить
+                    </button>
+                ) : (
+                    dragon.owner?.name
+                )
+                }
             </th>
         </tr>
     )

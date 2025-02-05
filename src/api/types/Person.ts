@@ -8,6 +8,7 @@ export type Person = {
     location: Location | null;
     weight: number;
     nationality: string;
+    owner: Person | null;
 }
 
 

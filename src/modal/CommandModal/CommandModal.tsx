@@ -106,7 +106,7 @@ export default function CommandModal() {
     }
 
     function handleChangeCave(event: React.ChangeEvent<HTMLInputElement>) {
-
+        setNewCommand({...newCommand, cave: { ...newCommand.cave, [event.target.name]: event.target.value}});
     }
 
     function handleExistingPerson(person: Person) {
@@ -185,12 +185,12 @@ export default function CommandModal() {
                                        style={{maxHeight: "10px", fontSize: "15px"}}>Глубина</label>
                             </div>
                             <div className={styles.locationContainer}>
-                                <input className={styles.input} name="numberOfTreasuers" type="number"
+                                <input className={styles.input} name="numberOfTreasueres" type="number"
                                        value={newCommand?.cave?.numberOfTreasueres}
-                                       onChange={(event) => handleChangeCave(event)}/>
+                                       onChange={(event) => setNewCommand({...newCommand, cave: { ...newCommand.cave, numberOfTreasueres: Number.parseInt(event.target.value)}})}/>
                                 <input className={styles.input} name="depth" type="number"
                                        value={newCommand?.cave?.depth}
-                                       onChange={(event) => handleChangeCave(event)}/>
+                                       onChange={(event) => setNewCommand({...newCommand, cave: { ...newCommand.cave, depth: Number.parseInt(event.target.value)}})}/>
                             </div>
                         </>
                     ) : (

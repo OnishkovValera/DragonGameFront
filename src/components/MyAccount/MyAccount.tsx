@@ -11,6 +11,7 @@ export default function MyAccount() {
 
     const {user, setUser} = useUserStore();
 
+    const [userRequestStatus, setUserRequestStatus] = useState<"PENDING" | "APPROVED" | "REJECTED">("PENDING");
     const [newUser, setNewUser] = useState<User>(structuredClone(user))
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const [requests, setRequests] = useState<AdminRequest[]>([]);
@@ -30,16 +31,26 @@ export default function MyAccount() {
         })
     }
 
+    const getAdminRequest = async () => {
+        try {
+            const response = await api.get("request/me")
+            setUserRequestStatus(response.data.status)
+            console.log(response)
+        }catch (error){
+            console.log(error)
+        }
+
+    }
     useEffect(() => {
         if (user?.role === "ADMIN"){
             getRequest()
         }
+        getAdminRequest();
     }, [])
 
     function getRequest(){
         api.get("/request").then(res =>{
             setRequests(res.data)
-            console.log(res)
         })
     }
 
@@ -140,7 +151,12 @@ export default function MyAccount() {
             )}
             {user?.role === "USER" ? (
                 <div style ={{display:"flex", justifyContent:"center"}}>
-                    <button className={styles.Button} onClick={getAdminPermissions}>Запросить права администратора</button>
+                    {userRequestStatus == null ? (
+                        <button className={styles.Button} onClick={getAdminPermissions}>Запросить права администратора</button>
+                    ):(
+                        <p>Статус заявки: {userRequestStatus}</p>
+                    )
+                    }
                 </div>
             ) : (
                 <div className={styles.tableContainer}>

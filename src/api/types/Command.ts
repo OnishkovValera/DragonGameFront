@@ -7,7 +7,7 @@ export type Command = {
     name: string;
     owner: User
     cave: DragonCave | null
-    members: Person[]
+    members: Person[] | number[]
 }
 
 

@@ -59,6 +59,7 @@
 .d2 button {
     min-width: 75px;
     margin-left: 5px;
+    margin-right: 5px;
 }
 
 .d2 input {

@@ -8,6 +8,8 @@ import ProtectedRoute from "./components/ProtectedComponent/ProtectedComponent.t
 import {api} from "./api/requests.ts";
 import {useUserStore} from "./store/globalStore.ts";
 import {useEffect} from "react";
+import ImportFile from "./components/import/ImportFile.tsx";
+import SpecialFunctionsMain from "./components/SpecialFunctions/SpecialFunctionsMain/SpecialFunctionsMain.tsx";
 
 export default function App() {
     const {setUser} = useUserStore()
@@ -42,6 +44,16 @@ export default function App() {
                 <Route path="/user" element={
                     <ProtectedRoute redirectTo={"/login"}>
                         <MyAccount/>
+                    </ProtectedRoute>
+                }/>
+                <Route path="/import" element={
+                    <ProtectedRoute redirectTo={"/login"}>
+                        <ImportFile></ImportFile>
+                    </ProtectedRoute>
+                }/>
+                <Route path="/special_functions" element={
+                    <ProtectedRoute redirectTo={"/login"}>
+                        <SpecialFunctionsMain></SpecialFunctionsMain>
                     </ProtectedRoute>
                 }/>
                 <Route path="*" element={<StartPage/>}/>

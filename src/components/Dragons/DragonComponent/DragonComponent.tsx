@@ -22,7 +22,7 @@ export default function DragonComponent({dragon}: { dragon: Dragon }) {
         <tr className={styles.dragonItem}>
             <th className={styles.firstChild}>{dragon.name}</th>
             <th>{dragon.coordinates.x} &bull; {dragon.coordinates.y}</th>
-            <th>{dragon.killer ? dragon.killer.name : "Жив"}</th>
+            <th>{dragon.person ? dragon.person.name : "Жив"}</th>
             <th>{dragon.age}</th>
             <th>{dragon.description ?
                 (dragon.description?.length > 10 ?

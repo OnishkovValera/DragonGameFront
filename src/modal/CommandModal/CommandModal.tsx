@@ -106,7 +106,7 @@ export default function CommandModal() {
     }
 
     function handleChangeCave(event: React.ChangeEvent<HTMLInputElement>) {
-        setNewCommand({...newCommand, cave: { ...newCommand.cave, [event.target.name]: event.target.value}});
+        setNewCommand({...newCommand, cave: {...newCommand.cave, [event.target.name]: event.target.value}});
     }
 
     function handleExistingPerson(person: Person) {
@@ -134,107 +134,121 @@ export default function CommandModal() {
 
     return (
         <div>
-            {addPerson ? (
-                <div className={styles.addPersonContainer}>
+            {
+                addPerson ? (
+                    <div className={styles.addPersonContainer}>
 
-                    {persons.map((person: Person) => {
-                            if (!newCommand.members.some(member => member.id === person.id)) {
-                                return (
-                                    <div className={styles.person}
-                                         key={person.id}
-                                         onClick={() => addPersonToCommand(person)}>
-                                        {person.name}
-                                    </div>)
-                            } else {
-                                return (
-                                    <div className={`${styles.person} ${styles.personDisabled}`}
-                                         key={person.id}
-                                         onClick={() => addPersonToCommand(person)}>
-                                        {person.name} уже в команде
-                                    </div>
-                                )
-                            }
-                        }
-                    )}
-
-                    <button className={styles.Button} style={{minWidth: "439px"}} onClick={downloadMorePersons}>
-                        Еще 5 персонажей
-                    </button>
-
-                    <button className={styles.Button} style={{minWidth: "439px"}} onClick={() => setAddPerson(false)}>
-                        Отмена
-                    </button>
-                </div>
-            ) : (
-                <form onSubmit={isCreating ? handleSubmit : handleChangeTeam} className={styles.form}>
-                    <div>
-                        <label className={styles.label}>{newCommand.owner.name}</label>
-                    </div>
-                    <div>
-                        <input className={styles.input} type="text" placeholder={"Название"} value={newCommand.name}
-                               name={"name"}
-                               minLength={6}
-                               onChange={handleChange}></input>
-                    </div>
-                    {newCommand.cave ? (
-                        <>
-                            <div>
-                                <label className={styles.label}
-                                       style={{maxHeight: "10px", fontSize: "15px"}}>Сокровища</label>
-                                <label className={styles.label}
-                                       style={{maxHeight: "10px", fontSize: "15px"}}>Глубина</label>
-                            </div>
-                            <div className={styles.locationContainer}>
-                                <input className={styles.input} name="numberOfTreasueres" type="number"
-                                       value={newCommand?.cave?.numberOfTreasueres}
-                                       onChange={(event) => setNewCommand({...newCommand, cave: { ...newCommand.cave, numberOfTreasueres: Number.parseInt(event.target.value)}})}/>
-                                <input className={styles.input} name="depth" type="number"
-                                       value={newCommand?.cave?.depth}
-                                       onChange={(event) => setNewCommand({...newCommand, cave: { ...newCommand.cave, depth: Number.parseInt(event.target.value)}})}/>
-                            </div>
-                        </>
-                    ) : (
-                        <button className={styles.caveCreateButton} onClick={() => {
-                            setNewCommand({
-                                ...newCommand, cave: {
-                                    depth: 0,
-                                    numberOfTreasueres: 0
+                        {
+                            persons.map((person: Person) => {
+                                    if (!newCommand.members.some(member => member.id === person.id)) {
+                                        return (
+                                            <div className={styles.person}
+                                                 key={person.id}
+                                                 onClick={() => addPersonToCommand(person)}>
+                                                {person.name}
+                                            </div>)
+                                    } else {
+                                        return (
+                                            <div className={`${styles.person} ${styles.personDisabled}`}
+                                                 key={person.id}
+                                                 onClick={() => addPersonToCommand(person)}>
+                                                {person.name} уже в команде
+                                            </div>
+                                        )
+                                    }
                                 }
-                            })
-                        }}>
-                            Отправить в подземелье
-                        </button>
-                    )}
-                    {
-                        newCommand.members.map((person) => (
-                            <div key={person.id}>
-                                <label className={styles.label} style={{
-                                    border: "1px solid #ccc",
-                                    borderRadius: "4px",
-                                    width: "50%"
-                                }}>{person.name}</label>
-                                <button className={styles.Button} value={person.id} style={{width: "50%"}}
-                                        onClick={personDeleteHandle}>
-                                    Удалить
-                                </button>
-                            </div>
-                        ))
-                    }
-                    <div>
-                        <button className={`${styles.Button} ${styles.add}`} type={"button"} onClick={handleAdd}>
-                            + Добавить
-                        </button>
-                    </div>
-                    <div>
-                        <button className={styles.Button} type={"submit"}>
-                            Применить
-                        </button>
-                    </div>
-                    {!isCreating && <button className={styles.Button} type={"button"} style={{backgroundColor: "red"}}
-                                            onClick={handleDelete}>Удалить</button>}
-                </form>
+                            )
+                        }
 
-            )
+                        <button className={styles.Button} style={{minWidth: "439px"}} onClick={downloadMorePersons}>
+                            Еще 5 персонажей
+                        </button>
+
+                        <button className={styles.Button} style={{minWidth: "439px"}}
+                                onClick={() => setAddPerson(false)}>
+                            Отмена
+                        </button>
+                    </div>
+                ) : (
+                    <form onSubmit={isCreating ? handleSubmit : handleChangeTeam} className={styles.form}>
+                        <div>
+                            <label className={styles.label}>{newCommand.owner.name}</label>
+                        </div>
+                        <div>
+                            <input className={styles.input} type="text" placeholder={"Название"} value={newCommand.name}
+                                   name={"name"}
+                                   minLength={6}
+                                   onChange={handleChange}></input>
+                        </div>
+                        {newCommand.cave ? (
+                            <>
+                                <div>
+                                    <label className={styles.label}
+                                           style={{maxHeight: "10px", fontSize: "15px"}}>Сокровища</label>
+                                    <label className={styles.label}
+                                           style={{maxHeight: "10px", fontSize: "15px"}}>Глубина</label>
+                                </div>
+                                <div className={styles.locationContainer}>
+                                    <input className={styles.input} name="numberOfTreasueres" type="number"
+                                           value={newCommand?.cave?.numberOfTreasueres}
+                                           onChange={(event) => setNewCommand({
+                                               ...newCommand,
+                                               cave: {
+                                                   ...newCommand.cave,
+                                                   numberOfTreasueres: Number.parseInt(event.target.value)
+                                               }
+                                           })}/>
+                                    <input className={styles.input} name="depth" type="number"
+                                           value={newCommand?.cave?.depth}
+                                           onChange={(event) => setNewCommand({
+                                               ...newCommand,
+                                               cave: {...newCommand.cave, depth: Number.parseInt(event.target.value)}
+                                           })}/>
+                                </div>
+                            </>
+                        ) : (
+                            <button className={styles.caveCreateButton} onClick={() => {
+                                setNewCommand({
+                                    ...newCommand, cave: {
+                                        depth: 0,
+                                        numberOfTreasueres: 0
+                                    }
+                                })
+                            }}>
+                                Отправить в подземелье
+                            </button>
+                        )}
+                        {
+                            newCommand.members.map((person) => (
+                                <div key={person.id}>
+                                    <label className={styles.label} style={{
+                                        border: "1px solid #ccc",
+                                        borderRadius: "4px",
+                                        width: "50%"
+                                    }}>{person.name}</label>
+                                    <button className={styles.Button} value={person.id} style={{width: "50%"}}
+                                            onClick={personDeleteHandle}>
+                                        Удалить
+                                    </button>
+                                </div>
+                            ))
+                        }
+                        <div>
+                            <button className={`${styles.Button} ${styles.add}`} type={"button"} onClick={handleAdd}>
+                                + Добавить
+                            </button>
+                        </div>
+                        <div>
+                            <button className={styles.Button} type={"submit"}>
+                                Применить
+                            </button>
+                        </div>
+                        {!isCreating &&
+                            <button className={styles.Button} type={"button"} style={{backgroundColor: "red"}}
+                                    onClick={handleDelete}>Удалить</button>}
+                    </form>
+
+                )
             }
         </div>
     )

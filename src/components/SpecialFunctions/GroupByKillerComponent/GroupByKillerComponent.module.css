@@ -1,0 +1,61 @@
+.Item {
+    margin: 5px;
+    height: 50px;
+    overflow: hidden;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #cccccc;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.Item:hover {
+    background-color: #e8f5fe;
+}
+
+
+.Button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.Button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+
+.firstChild{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.lastChild{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.table{
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    border-radius: 10px 10px 10px 10px;
+    width: 90%;
+    justify-content: center;
+}
+
+.tableContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+

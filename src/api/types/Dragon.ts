@@ -10,7 +10,7 @@ export type Dragon = {
     creationDateTime: string | null;
     dragonCave:DragonCave | null;
     speaking: boolean | null;
-    killer: Person | null;
+    person: Person | null;
     age: number;
     description: string | null;
     dragonCharacter: string;
@@ -35,5 +35,5 @@ export const voidDragon: Dragon = {
         x: 0
     },
     description: "",
-    killer: null
+    person: null
 }

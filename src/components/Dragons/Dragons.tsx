@@ -4,10 +4,12 @@ import {Dragon} from "../../api/types/Dragon.ts";
 import {api} from "../../api/requests.ts";
 import {useEffect, useState} from "react";
 import {useModalActive} from "../../store/globalStore.ts";
+import {useNavigate} from "react-router-dom";
 
 
 export default function Dragons({currentNumber}: { currentNumber: number }) {
 
+    const navigate = useNavigate();
     const [dragons, setDragons] = useState<Dragon[]>([]);
     const [orderBy, setorderBy] = useState<"asc" | "desc">("asc");
     const [searchString, setSearchString] = useState("");
@@ -39,6 +41,7 @@ export default function Dragons({currentNumber}: { currentNumber: number }) {
     return (
         <>
             <div className={styles.d2}>
+                <button className={styles.dragonButton} onClick={() => navigate("/import")}>Импорт файла</button>
                 <input onChange={(event) => {
                     setSearchString(event.target.value)
                 }} type="text" placeholder="Искать здесь..."/>

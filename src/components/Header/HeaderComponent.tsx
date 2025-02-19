@@ -48,6 +48,7 @@ export default function HeaderComponent({setSelected, selected}: {
                 <button className={styles.Button} onClick={() => setSelected(0)}>Драконы</button>
                 <button className={styles.Button} onClick={() => setSelected(1)}>Персонажи</button>
                 <button className={styles.Button} onClick={() => setSelected(2)}>Команды</button>
+                <button className={styles.Button} onClick={() => navigate("/special_functions")}>Доп функции</button>
             </div>
             <div className={`${styles.container} ${styles.Account}`}>
                 <button className={styles.Button} onClick={() => navigate("/user")}>Аккаунт</button>
